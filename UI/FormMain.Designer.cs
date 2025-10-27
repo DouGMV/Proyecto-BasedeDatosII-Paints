@@ -32,16 +32,18 @@
             mantenimientosToolStripMenuItem = new ToolStripMenuItem();
             clientesToolStripMenuItem = new ToolStripMenuItem();
             productosToolStripMenuItem = new ToolStripMenuItem();
-            empleadosYReportesToolStripMenuItem = new ToolStripMenuItem();
+            empleadosToolStripMenuItem = new ToolStripMenuItem();
+            usuariosToolStripMenuItem = new ToolStripMenuItem();
             reportesToolStripMenuItem = new ToolStripMenuItem();
             labelUsuario = new Label();
+            facturacionToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { mantenimientosToolStripMenuItem, reportesToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { mantenimientosToolStripMenuItem, facturacionToolStripMenuItem, reportesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 28);
@@ -50,7 +52,7 @@
             // 
             // mantenimientosToolStripMenuItem
             // 
-            mantenimientosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, productosToolStripMenuItem, empleadosYReportesToolStripMenuItem });
+            mantenimientosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, productosToolStripMenuItem, empleadosToolStripMenuItem, usuariosToolStripMenuItem });
             mantenimientosToolStripMenuItem.Name = "mantenimientosToolStripMenuItem";
             mantenimientosToolStripMenuItem.Size = new Size(130, 24);
             mantenimientosToolStripMenuItem.Text = "Mantenimientos";
@@ -69,12 +71,19 @@
             productosToolStripMenuItem.Text = "Productos";
             productosToolStripMenuItem.Click += productosToolStripMenuItem_Click;
             // 
-            // empleadosYReportesToolStripMenuItem
+            // empleadosToolStripMenuItem
             // 
-            empleadosYReportesToolStripMenuItem.Name = "empleadosYReportesToolStripMenuItem";
-            empleadosYReportesToolStripMenuItem.Size = new Size(224, 26);
-            empleadosYReportesToolStripMenuItem.Text = "Empleados";
-            empleadosYReportesToolStripMenuItem.Click += empleadosYReportesToolStripMenuItem_Click;
+            empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
+            empleadosToolStripMenuItem.Size = new Size(224, 26);
+            empleadosToolStripMenuItem.Text = "Empleados";
+            empleadosToolStripMenuItem.Click += empleadosToolStripMenuItem_Click;
+            // 
+            // usuariosToolStripMenuItem
+            // 
+            usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            usuariosToolStripMenuItem.Size = new Size(224, 26);
+            usuariosToolStripMenuItem.Text = "Usuarios";
+            usuariosToolStripMenuItem.Click += usuariosToolStripMenuItem_Click;
             // 
             // reportesToolStripMenuItem
             // 
@@ -90,6 +99,13 @@
             labelUsuario.Size = new Size(59, 20);
             labelUsuario.TabIndex = 1;
             labelUsuario.Text = "Usuario";
+            // 
+            // facturacionToolStripMenuItem
+            // 
+            facturacionToolStripMenuItem.Name = "facturacionToolStripMenuItem";
+            facturacionToolStripMenuItem.Size = new Size(98, 24);
+            facturacionToolStripMenuItem.Text = "Facturacion";
+            facturacionToolStripMenuItem.Click += facturacionToolStripMenuItem_Click;
             // 
             // FormMain
             // 
@@ -113,8 +129,10 @@
         private ToolStripMenuItem mantenimientosToolStripMenuItem;
         private ToolStripMenuItem clientesToolStripMenuItem;
         private ToolStripMenuItem productosToolStripMenuItem;
-        private ToolStripMenuItem empleadosYReportesToolStripMenuItem;
+        private ToolStripMenuItem empleadosToolStripMenuItem;
         private ToolStripMenuItem reportesToolStripMenuItem;
         private Label labelUsuario;
+        private ToolStripMenuItem usuariosToolStripMenuItem;
+        private ToolStripMenuItem facturacionToolStripMenuItem;
     }
 }

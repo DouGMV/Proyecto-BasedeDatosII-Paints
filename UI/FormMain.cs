@@ -40,9 +40,21 @@
             formulario.ShowDialog();
         }
 
-        private void empleadosYReportesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void empleadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var formulario = new FormEmpleados();
+            formulario.ShowDialog();
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var formulario = new FormUsuarios();
+            formulario.ShowDialog();
+        }
+
+        private void facturacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var formulario = new FormFacturacion();
             formulario.ShowDialog();
         }
     }

@@ -6,4 +6,6 @@ public class UsuarioDTO
     public string Contrasena { get; set; }
     public bool EstadoUsuario { get; set; }
     public int IdRol { get; set; }
+    public string Rol { get; set; }
 }
+

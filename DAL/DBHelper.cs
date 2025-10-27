@@ -7,7 +7,7 @@ using System.IO;
 public static class DbHelper
 {
     // Método para obtener la cadena de conexión desde appsettings.json
-    private static string ObtenerCadenaConexion()
+    public static string ObtenerCadenaConexion()
     {
         var config = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
