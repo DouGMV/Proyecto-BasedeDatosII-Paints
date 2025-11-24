@@ -1,11 +1,12 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System.IO;
 
 namespace UI
 {
@@ -25,6 +26,8 @@ namespace UI
             CargarEmpleados();
             CargarProductos();
             CargarMediosPago();
+
+            comboBoxProductos.SelectedIndexChanged += comboBoxProductos_SelectedIndexChanged;
         }
 
         private void CargarClientes()
@@ -74,6 +77,24 @@ namespace UI
             var producto = productos.First(p => p.IdProducto == (int)comboBoxProductos.SelectedValue);
             int cantidad = (int)numericUpDownCantidad.Value;
 
+            // Consultar stock desde la base de datos
+            var query = $"SELECT stock FROM Inventario WHERE idProducto = {producto.IdProducto}";
+            var dtStock = DbHelper.EjecutarConsulta(query);
+            if (dtStock.Rows.Count == 0)
+            {
+                MessageBox.Show("El producto no existe en inventario.");
+                return;
+            }
+
+            int stockActual = Convert.ToInt32(dtStock.Rows[0]["stock"]);
+
+            if (cantidad > stockActual)
+            {
+                MessageBox.Show($"No hay suficiente stock. Stock actual: {stockActual}");
+                return;
+            }
+
+            // Calcular totales del producto
             var subtotal = producto.PrecioVenta * cantidad;
             var detalle = new DetalleFacturaDTO
             {
@@ -88,6 +109,7 @@ namespace UI
             detalles.Add(detalle);
             ActualizarTabla();
         }
+
 
         private void buttonEliminarProducto_Click(object sender, EventArgs e)
         {
@@ -119,6 +141,11 @@ namespace UI
                     Detalles = detalles
                 };
 
+                // Debug visual: mostrar los productos que se van a enviar
+                string resumen = string.Join("\n", factura.Detalles.Select(d =>
+                    $"Producto {d.IdProducto} - Cantidad {d.Cantidad} - Precio {d.PrecioUnidad}"));
+                MessageBox.Show("Productos enviados:\n" + resumen, "Verificación antes de guardar");
+
                 int idFactura = facturaBLL.GuardarFactura(factura);
 
                 MessageBox.Show($"Factura {factura.NumeroFactura} creada correctamente (ID: {idFactura})");
@@ -126,11 +153,21 @@ namespace UI
                 GenerarPDF(factura);
                 LimpiarFormulario();
             }
+            catch (SqlException sqlEx)
+            {
+                string msg = "Error SQL detectado:\n";
+                foreach (SqlError err in sqlEx.Errors)
+                {
+                    msg += $" - {err.Message}\n";
+                }
+                MessageBox.Show(msg, "Error SQL");
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar factura: " + ex.Message);
+                MessageBox.Show("Error general: " + ex.Message);
             }
         }
+
 
         private void buttonImprimir_Click(object sender, EventArgs e)
         {
@@ -197,6 +234,7 @@ namespace UI
                 };
                 doc.Add(titulo);
                 doc.Add(new Paragraph($"Fecha: {DateTime.Now}"));
+                doc.Add(new Paragraph($"Empleado: {comboBoxEmpleados.Text}"));
                 doc.Add(new Paragraph($"Cliente: {comboBoxClientes.Text}"));
                 doc.Add(new Paragraph($"Medio de Pago: {comboBoxMediosDePago.Text}"));
                 doc.Add(new Paragraph(" "));
@@ -234,5 +272,33 @@ namespace UI
             textBoxTotal.Clear();
             numericUpDownCantidad.Value = 1;
         }
+
+        private void comboBoxProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxProductos.SelectedValue == null) return;
+
+            try
+            {
+                int idProducto = (int)comboBoxProductos.SelectedValue;
+                string query = $"SELECT stock FROM Inventario WHERE idProducto = {idProducto}";
+
+                var dt = DbHelper.EjecutarConsulta(query);
+
+                if (dt.Rows.Count > 0)
+                {
+                    textBoxStock.Text = dt.Rows[0]["stock"].ToString();
+                }
+                else
+                {
+                    textBoxStock.Text = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener stock: " + ex.Message);
+                textBoxStock.Text = "0";
+            }
+        }
+
     }
 }

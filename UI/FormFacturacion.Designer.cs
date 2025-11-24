@@ -51,6 +51,8 @@
             comboBoxProductos = new ComboBox();
             numericUpDownCantidad = new NumericUpDown();
             labelCantidad = new Label();
+            labelStock = new Label();
+            textBoxStock = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewDetalle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCantidad).BeginInit();
             SuspendLayout();
@@ -117,28 +119,28 @@
             // 
             // textBoxSubtotal
             // 
-            textBoxSubtotal.Location = new Point(187, 272);
+            textBoxSubtotal.Location = new Point(188, 319);
             textBoxSubtotal.Name = "textBoxSubtotal";
             textBoxSubtotal.Size = new Size(151, 27);
             textBoxSubtotal.TabIndex = 7;
             // 
             // textBoxDescuento
             // 
-            textBoxDescuento.Location = new Point(187, 319);
+            textBoxDescuento.Location = new Point(188, 366);
             textBoxDescuento.Name = "textBoxDescuento";
             textBoxDescuento.Size = new Size(151, 27);
             textBoxDescuento.TabIndex = 8;
             // 
             // textBoxImpuestos
             // 
-            textBoxImpuestos.Location = new Point(187, 364);
+            textBoxImpuestos.Location = new Point(188, 411);
             textBoxImpuestos.Name = "textBoxImpuestos";
             textBoxImpuestos.Size = new Size(151, 27);
             textBoxImpuestos.TabIndex = 9;
             // 
             // textBoxTotal
             // 
-            textBoxTotal.Location = new Point(187, 410);
+            textBoxTotal.Location = new Point(188, 457);
             textBoxTotal.Name = "textBoxTotal";
             textBoxTotal.Size = new Size(151, 27);
             textBoxTotal.TabIndex = 10;
@@ -146,7 +148,7 @@
             // labelSubtotal
             // 
             labelSubtotal.AutoSize = true;
-            labelSubtotal.Location = new Point(42, 279);
+            labelSubtotal.Location = new Point(43, 326);
             labelSubtotal.Name = "labelSubtotal";
             labelSubtotal.Size = new Size(68, 20);
             labelSubtotal.TabIndex = 11;
@@ -155,7 +157,7 @@
             // labelDescuento
             // 
             labelDescuento.AutoSize = true;
-            labelDescuento.Location = new Point(42, 326);
+            labelDescuento.Location = new Point(43, 373);
             labelDescuento.Name = "labelDescuento";
             labelDescuento.Size = new Size(82, 20);
             labelDescuento.TabIndex = 12;
@@ -164,7 +166,7 @@
             // labelImpuestos
             // 
             labelImpuestos.AutoSize = true;
-            labelImpuestos.Location = new Point(42, 371);
+            labelImpuestos.Location = new Point(43, 418);
             labelImpuestos.Name = "labelImpuestos";
             labelImpuestos.Size = new Size(80, 20);
             labelImpuestos.TabIndex = 13;
@@ -173,7 +175,7 @@
             // labelTotal
             // 
             labelTotal.AutoSize = true;
-            labelTotal.Location = new Point(42, 417);
+            labelTotal.Location = new Point(43, 464);
             labelTotal.Name = "labelTotal";
             labelTotal.Size = new Size(45, 20);
             labelTotal.TabIndex = 14;
@@ -252,11 +254,29 @@
             labelCantidad.TabIndex = 22;
             labelCantidad.Text = "Cantidad:";
             // 
+            // labelStock
+            // 
+            labelStock.AutoSize = true;
+            labelStock.Location = new Point(43, 279);
+            labelStock.Name = "labelStock";
+            labelStock.Size = new Size(48, 20);
+            labelStock.TabIndex = 24;
+            labelStock.Text = "Stock:";
+            // 
+            // textBoxStock
+            // 
+            textBoxStock.Location = new Point(188, 272);
+            textBoxStock.Name = "textBoxStock";
+            textBoxStock.Size = new Size(151, 27);
+            textBoxStock.TabIndex = 23;
+            // 
             // FormFacturacion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 523);
+            Controls.Add(labelStock);
+            Controls.Add(textBoxStock);
             Controls.Add(labelCantidad);
             Controls.Add(numericUpDownCantidad);
             Controls.Add(labelProducto);
@@ -314,5 +334,7 @@
         private ComboBox comboBoxProductos;
         private NumericUpDown numericUpDownCantidad;
         private Label labelCantidad;
+        private Label labelStock;
+        private TextBox textBoxStock;
     }
 }

@@ -12,5 +12,13 @@
 
         return dal.Insertar(factura);
     }
+
+    public void AnularFactura(string numeroFactura)
+    {
+        if (string.IsNullOrWhiteSpace(numeroFactura))
+            throw new Exception("El número de factura es obligatorio.");
+
+        dal.AnularPorNumero(numeroFactura);
+    }
 }
 

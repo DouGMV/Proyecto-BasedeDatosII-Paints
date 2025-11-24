@@ -57,5 +57,17 @@
             var formulario = new FormFacturacion();
             formulario.ShowDialog();
         }
+
+        private void anularFacturaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var formulario = new FormAnulacionFactura();
+            formulario.ShowDialog();
+        }
+
+        private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var formulario = new FormReportes();
+            formulario.ShowDialog();
+        }
     }
 }

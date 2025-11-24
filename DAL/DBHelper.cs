@@ -36,6 +36,16 @@ public static class DbHelper
         return dt;
     }
 
+    public static DataTable EjecutarConsulta(string query)
+    {
+        using var cn = new SqlConnection(ObtenerCadenaConexion());
+        using var da = new SqlDataAdapter(query, cn);
+        var dt = new DataTable();
+        da.Fill(dt);
+        return dt;
+    }
+
+
     // Ejecuta un procedimiento almacenado que devuelve un único valor
     public static object EjecutarSpEscalar(string nombreSp, params SqlParameter[] parametros)
     {
